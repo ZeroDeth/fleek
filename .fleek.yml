@@ -5,7 +5,7 @@ bling: none
 ejected: false
 flakedir: .local/share/fleek
 git:
-  autocommit: false
+  autocommit: true
   autopull: true
   autopush: true
   enabled: true
