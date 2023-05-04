@@ -31,7 +31,7 @@
     PAGER = "less -FirSwX";
     # MANPAGER = "${manpager}/bin/manpager";
     FLEEK_MANAGED= "1";
-    FLEEK_DEBUG= "1";
+    # FLEEK_DEBUG= "1";
   };
 
   # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
