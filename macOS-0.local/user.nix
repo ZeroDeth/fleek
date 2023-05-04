@@ -31,6 +31,7 @@
     PAGER = "less -FirSwX";
     # MANPAGER = "${manpager}/bin/manpager";
     FLEEK_MANAGED= "1";
+    FLEEK_DEBUG= "1";
   };
 
   # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
@@ -84,23 +85,23 @@
     userEmail = "sherif@abdalla.uk";
     extraConfig = {
       feature.manyFiles = true;
-      # advice.detachedHead = false;
+      advice.detachedHead = false;
       init.defaultBranch = "main";
-      # commit.gpgSign = true;
-      # push.autoSetupRemote = true;
+      commit.gpgSign = true;
+      push.autoSetupRemote = true;
 
       # TODO: improve this hack (if possible)
       gpg = lib.mkForce { program = lib.mkForce "${pkgs.gnupg}/bin/gpg2"; };
-      # tag = {
-      #   forceSignAnnotated = true;
-      #   gpgSign = true;
-      # };
+      tag = {
+        forceSignAnnotated = true;
+        gpgSign = true;
+      };
       branch.autosetuprebase = "always";
       color.ui = true;
       core.askPass = ""; # needs to be empty to use terminal for ask pass
       core.editor = "code --wait";
       credential.helper = "store"; # want to make this more secure
-      # credential.credentialStore = "gpg";
+      credential.credentialStore = "gpg";
       github.user = "zerodeth";
       push.default = "tracking";
     };
