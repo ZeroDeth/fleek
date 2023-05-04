@@ -56,7 +56,7 @@
     FLEEK_MANAGED= "1";
   };
 
-  home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
+  # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
 
   programs.zsh = {
     enableAutosuggestions = true;

@@ -42,6 +42,8 @@ packages:
 - gnupg
 - pinentry_mac
 - python3
+- pre-commit
+- chezmoi
 # - cachix
 paths:
 - $HOME/bin
