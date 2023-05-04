@@ -68,7 +68,6 @@
     ;
 
     enableSyntaxHighlighting = true;
-
   };
 
   # nix = {
