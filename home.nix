@@ -1,5 +1,6 @@
 { config, pkgs, misc, ... }: {
   # DO NOT EDIT: This file is managed by fleek. Manual changes will be overwritten.
+
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -11,7 +12,6 @@
 
     };
   };
-
 
   # managed by fleek, modify ~/.fleek.yml to change installed packages
 
@@ -48,4 +48,5 @@
   home.stateVersion =
     "22.11"; # To figure this out (in-case it changes) you can comment out the line and see what version it expected.
   programs.home-manager.enable = true;
+
 }

@@ -1,6 +1,8 @@
 ---
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
+# https://docs.gitguardian.com/ggshield-docs/integrations/git-hooks/pre-commit
+
 ci:
   autofix_prs: true
   skip:

@@ -1,26 +1,22 @@
 aliases:
   fleeks: cd ~/.local/share/fleek
   pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
-  ls: "exa"
-  ll: "exa -l"
-  # la: "exa --long --all --group --header --group-directories-first --sort=type --icons"
-  lla: "exa -la"
-  lg: "exa --long --all --group --header --git"
-  # lt: "exa --long --all --group --header --tree --level"
 bling: none
 ejected: false
 flakedir: .local/share/fleek
 git:
-  autocommit: true
+  autocommit: false
   autopull: true
   autopush: true
   enabled: true
 min_version: ""
 name: Fleek Configuration
+overlays: {}
 packages:
 - helix
 - gtop
-- nodejs
+# - nodejs
+- nodejs-18_x
 - yarn
 - go
 - duf

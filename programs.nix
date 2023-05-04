@@ -8,7 +8,6 @@
 
   # User specified programs
     programs.dircolors.enable = true;
-
     programs.exa.enable = true;
     programs.bat.enable = true;
     programs.atuin.enable = true;
