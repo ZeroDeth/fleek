@@ -4,6 +4,10 @@
     # home.username = "zerodeth";
     # home.homeDirectory = "/Users/zerodeth";
 
+    programs.gh.enable = true;
+    programs.gh.enableGitCredentialHelper = true;
+    programs.gh.settings.git_protocol = "ssh";
+
     programs.git = {
         enable = true;
         aliases = {
