@@ -1,16 +1,13 @@
 { pkgs, misc, ... }: {
   # DO NOT EDIT: This file is managed by fleek. Manual changes will be overwritten.
-  
+
    home.shellAliases = {
     fleeks = "cd ~/.local/share/fleek";
 
     pinentry-mac = "~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac";
 
-    # bat --plain for unformatted cat
-    catp = "bat -P";
-
-    # replace cat with bat
-    cat = "bat";
+    catp = "bat -P";  # bat --plain for unformatted cat
+    cat = "bat";      # replace cat with bat
 
     cz = "chezmoi";
     czg = "chezmoi git";
