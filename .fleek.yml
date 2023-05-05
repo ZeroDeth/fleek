@@ -5,7 +5,7 @@ bling: none
 ejected: false
 flakedir: .local/share/fleek
 git:
-    autocommit: true
+    autocommit: false
     autopull: true
     autopush: true
     enabled: true
@@ -39,6 +39,8 @@ packages:
     - python3
     - pre-commit
     - chezmoi
+    - distrobox
+    # - cachix
 paths:
     - $HOME/bin
     - $HOME/.local/bin
@@ -50,6 +52,7 @@ programs:
     - direnv
     - neovim
     - zsh.oh-my-zsh
+    - starship
     - gpg
 shell: zsh
 systems:
@@ -62,9 +65,4 @@ systems:
       os: darwin
       username: zerodeth
 unfree: true
-users:
-    - email: sherif@abdalla.uk
-      name: Sherif Abdalla
-      ssh_private_key_file: ~/.ssh/id_ed25519
-      ssh_public_key_file: ~/.ssh/id_ed25519.pub
-      username: zerodeth
+users: []

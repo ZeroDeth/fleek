@@ -45,6 +45,7 @@
     pkgs.python3
     pkgs.pre-commit
     pkgs.chezmoi
+    pkgs.distrobox
     # Fleek Bling
     pkgs.git
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })

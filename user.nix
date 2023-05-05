@@ -16,10 +16,8 @@
   };
 
   programs.bat.config = {
-  theme = "TwoDark";
+    theme = "TwoDark";
   };
-
-  # programs.zsh.enableAutosuggestions=true;
 
   programs.neovim = {
     viAlias = true;
