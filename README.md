@@ -20,3 +20,5 @@ $ apply-$(hostname)
 
 Your actual aliases are listed below:
     fleeks = "cd ~/.local/share/fleek";
+
+    pinentry-mac = "~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac";
