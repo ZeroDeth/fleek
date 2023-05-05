@@ -1,69 +1,70 @@
 aliases:
-  fleeks: cd ~/.local/share/fleek
-  pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
+    fleeks: cd ~/.local/share/fleek
+    pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
 bling: none
 ejected: false
 flakedir: .local/share/fleek
 git:
-  autocommit: true
-  autopull: true
-  autopush: true
-  enabled: true
+    autocommit: true
+    autopull: true
+    autopush: true
+    enabled: true
 min_version: ""
 name: Fleek Configuration
 overlays: {}
 packages:
-- helix
-- gtop
-# - nodejs
-- nodejs-18_x
-- yarn
-- go
-- duf
-- ctop
-- kitty
-- git
-- htop
-- github-cli
-- glab
-- fzf
-- ripgrep
-- vscode
-- lazygit
-- jq
-- yq
-- neofetch
-- btop
-- cheat
-- gnupg
-- pinentry_mac
-- python3
-- pre-commit
-- chezmoi
-# - cachix
+    - helix
+    - gtop
+    - nodejs-18_x
+    - yarn
+    - go
+    - duf
+    - ctop
+    - kitty
+    - git
+    - htop
+    - github-cli
+    - glab
+    - fzf
+    - ripgrep
+    - vscode
+    - lazygit
+    - jq
+    - yq
+    - neofetch
+    - btop
+    - cheat
+    - gnupg
+    - pinentry_mac
+    - python3
+    - pre-commit
+    - chezmoi
 paths:
-- $HOME/bin
-- $HOME/.local/bin
-- $HOME/.gnupg
+    - $HOME/bin
+    - $HOME/.local/bin
+    - $HOME/.gnupg
 programs:
-- dircolors
-- exa
-- zoxide
-- direnv
-- neovim
-- zsh.oh-my-zsh
-- gpg
+    - dircolors
+    - exa
+    - zoxide
+    - direnv
+    - neovim
+    - zsh.oh-my-zsh
+    - gpg
 shell: zsh
 systems:
-- arch: x86_64
-  hostname: macOS-0.local
-  os: darwin
-  username: zerodeth
+    - arch: x86_64
+      hostname: macOS-0.local
+      os: darwin
+      username: zerodeth
+    - arch: aarch64
+      hostname: macOS-W.local
+      os: darwin
+      username: zerodeth
 unfree: true
-users: []
-# users:
-# - email: sherif@abdalla.uk
-#   name: Sherif Abdalla
-#   ssh_private_key_file: ~/.ssh/id_ed25519
-#   ssh_public_key_file: ~/.ssh/id_ed25519.pub
-#   username: zerodeth
+users:
+    - email: sherif@abdalla.uk
+      name: Sherif Abdalla
+      ssh_private_key_file: ~/.ssh/id_ed25519
+      ssh_public_key_file: ~/.ssh/id_ed25519.pub
+      username: zerodeth
