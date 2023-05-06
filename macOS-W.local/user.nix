@@ -52,11 +52,27 @@
     enableSyntaxHighlighting = true;
   };
 
+  programs.starship = {
+    enable = true;
+    # Configuration written to ~/.config/starship.toml
+    settings = {
+      add_newline = false;
+
+      character = {
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
+      };
+
+      package.disabled = true;
+    };
+  };
+
   # For information about available direnv options,
   # please see: https://direnv.net/man/direnv.toml.1.html
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
     config = {
       global.load_dotenv = true;
       global.strict_env = true;
@@ -69,6 +85,7 @@
     enableGitCredentialHelper = true;
     settings = {
       git_protocol = "ssh";
+      prompt = "enabled";
     };
   };
 
