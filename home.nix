@@ -47,6 +47,13 @@
     pkgs.chezmoi
     pkgs.distrobox
     pkgs.shellcheck
+    pkgs.tailscale
+    pkgs.cachix
+    pkgs.fish
+    pkgs.thefuck
+    pkgs.byobu
+    pkgs.docker
+    pkgs.colima
     # Fleek Bling
     pkgs.git
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })

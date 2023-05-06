@@ -40,6 +40,37 @@
   # Programs
   #---------------------------------------------------------------------
 
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+    shellOptions = [];
+    historyControl = [ "ignoredups" "ignorespace" ];
+    initExtra = builtins.readFile ./bashrc;
+    bashrcExtra = ''
+        export GPG_TTY="$(tty)"
+        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+        # . ${pkgs.asdf-vm}/share/bash-completion/completions/asdf.bash
+        # . ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh
+    '';
+
+    shellAliases = {
+      ga = "git add";
+      gc = "git commit";
+      gco = "git checkout";
+      gcp = "git cherry-pick";
+      gdiff = "git diff";
+      gl = "git prettylog";
+      gcount = "git shortlog -sn";
+      glg = "git log --stat";
+      gwch = "git whatchanged -p --abbrev-commit --pretty=medium";
+      gp = "git push";
+      gs = "git status";
+      gt = "git tag";
+      gfa = "git fetch --all";
+      gpa = "git pull --all";
+    };
+  };
+
   programs.zsh = {
     enableAutosuggestions = true;
     completionInit =
@@ -52,8 +83,60 @@
     enableSyntaxHighlighting = true;
   };
 
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
+    #   "source ${sources.theme-bobthefish}/functions/fish_prompt.fish"
+    #   "source ${sources.theme-bobthefish}/functions/fish_right_prompt.fish"
+    #   "source ${sources.theme-bobthefish}/functions/fish_title.fish"
+      (builtins.readFile ./config.fish)
+      "set -g SHELL ${pkgs.fish}/bin/fish"
+    ]);
+
+    shellAliases = {
+      ga = "git add";
+      gc = "git commit";
+      gco = "git checkout";
+      gcp = "git cherry-pick";
+      gdiff = "git diff";
+      gl = "git prettylog";
+      gcount = "git shortlog -sn";
+      glg = "git log --stat";
+      gwch = "git whatchanged -p --abbrev-commit --pretty=medium";
+      gp = "git push";
+      gs = "git status";
+      gt = "git tag";
+      gfa = "git fetch --all";
+      gpa = "git pull --all";
+
+    #   ls = "exa";
+    #   ll = "exa -l";
+    #   la = "exa --long --all --group --header --group-directories-first --sort=type --icons";
+    #   lla = "exa -la";
+      lg = "exa --long --all --group --header --git";
+    #   lt = "exa --long --all --group --header --tree --level ";
+
+      rm = "trash-put";
+      unrm = "trash-restore";
+      rmcl = "trash-empty";
+      rml = "trash-list";
+
+      # ossw = "sudo nixos-rebuild switch --flake '/etc/nixos/#nixtst' --impure -v";
+      # hmsw = "home-manager switch --flake ~/.config/nixpkgs/#$USER";
+      # upa = "nix flake update ~/.config/nixpkgs -v && sudo nix flake update '/etc/nixos/' -v";
+      # fusw = "upa && ossw && hmsw";
+      # rusw = "ossw && hmsw";
+      ucl = "nix-collect-garbage -d && nix-store --gc && nix-store --repair --verify --check-contents && nix-store --optimise -vvv";
+      scl = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nix-store --repair --verify --check-contents && sudo nix-store --optimise -vvv";
+      acl = "ucl && scl";
+
+    };
+  };
+
   programs.starship = {
     enable = true;
+    enableBashIntegration = false;
+    enableZshIntegration = true;
     # Configuration written to ~/.config/starship.toml
     settings = {
       # add_newline = false;
@@ -65,6 +148,12 @@
 
       # package.disabled = true;
     };
+  };
+
+  programs.dircolors = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
   };
 
   # For information about available direnv options,

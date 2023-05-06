@@ -1,70 +1,77 @@
 aliases:
-  fleeks: cd ~/.local/share/fleek
-  pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
+    fleeks: cd ~/.local/share/fleek
+    pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
 bling: none
 ejected: false
 flakedir: .local/share/fleek
 git:
-  autocommit: true
-  autopull: true
-  autopush: true
-  enabled: true
+    autocommit: true
+    autopull: true
+    autopush: true
+    enabled: true
 min_version: ""
 name: Fleek Configuration
 overlays: {}
 packages:
-- helix
-- gtop
-- nodejs-18_x
-- yarn
-- go
-- duf
-- ctop
-- kitty
-- git
-- htop
-- github-cli
-- glab
-- fzf
-- ripgrep
-- vscode
-- lazygit
-- jq
-- yq
-- neofetch
-- btop
-- cheat
-- gnupg
-- pinentry_mac
-- python3
-- pre-commit
-- chezmoi
-- distrobox
-- shellcheck
+    - helix
+    - gtop
+    - nodejs-18_x
+    - yarn
+    - go
+    - duf
+    - ctop
+    - kitty
+    - git
+    - htop
+    - github-cli
+    - glab
+    - fzf
+    - ripgrep
+    - vscode
+    - lazygit
+    - jq
+    - yq
+    - neofetch
+    - btop
+    - cheat
+    - gnupg
+    - pinentry_mac
+    - python3
+    - pre-commit
+    - chezmoi
+    - distrobox
+    - shellcheck
+    - tailscale
+    - cachix
+    - fish
+    - thefuck
+    - byobu
+    - docker
+    - colima
 paths:
-- $HOME/bin
-- $HOME/.local/bin
-- $HOME/.gnupg
+    - $HOME/bin
+    - $HOME/.local/bin
+    - $HOME/.gnupg
 programs:
-- dircolors
-- exa
-- bat
-- atuin
-- zoxide
-- direnv
-- neovim
-- zsh.oh-my-zsh
-- starship
-- gpg
+    - dircolors
+    - exa
+    - bat
+    - atuin
+    - zoxide
+    - direnv
+    - neovim
+    - zsh.oh-my-zsh
+    - starship
+    - gpg
 shell: zsh
 systems:
-- arch: x86_64
-  hostname: macOS-0.local
-  os: darwin
-  username: zerodeth
-- arch: aarch64
-  hostname: macOS-W.local
-  os: darwin
-  username: zerodeth
+    - arch: x86_64
+      hostname: macOS-0.local
+      os: darwin
+      username: zerodeth
+    - arch: aarch64
+      hostname: macOS-W.local
+      os: darwin
+      username: zerodeth
 unfree: true
 users: []
