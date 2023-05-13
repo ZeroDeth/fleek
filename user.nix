@@ -7,21 +7,45 @@
   # Programs
   #---------------------------------------------------------------------
 
-  programs.exa = {
-    enableAliases = true;
-    extraOptions = [
-      "--group-directories-first"
-      "--header"
-    ];
-  };
+  programs = {
+    exa = {
+      enableAliases = true;
+      extraOptions = [
+        "--group-directories-first"
+        "--header"
+      ];
+    };
 
-  programs.bat.config = {
-    theme = "TwoDark";
-  };
+    bat = {
+      # Better 'cat'
+      # enable = true;
+      config = {
+        theme = "TwoDark";
+        italic-text = "always";
+        pager = "less -FR";
+      };
+    };
 
-  programs.neovim = {
-    viAlias = true;
-    vimAlias = true;
+    neovim = {
+      viAlias = true;
+      vimAlias = true;
+    };
+
+    fzf = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = false;
+      enableFishIntegration = false;
+    };
+
+    # This makes it so that if you type the name of a program that
+    # isn't installed, it will tell you which package contains it.
+    nix-index = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+    };
   };
 
 }

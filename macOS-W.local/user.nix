@@ -32,6 +32,9 @@
     # MANPAGER = "${manpager}/bin/manpager";
     FLEEK_MANAGED= "1";
     # FLEEK_DEBUG= "1";
+    # NIXPKGS_ALLOW_UNFREE= "1";
+    # NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM= "1";
+    SSH_AUTH_SOCK = "~/.1password/agent.sock";
   };
 
   # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
@@ -40,188 +43,466 @@
   # Programs
   #---------------------------------------------------------------------
 
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-    shellOptions = [];
-    historyControl = [ "ignoredups" "ignorespace" ];
-    initExtra = builtins.readFile ./bashrc;
-    bashrcExtra = ''
-        export GPG_TTY="$(tty)"
-        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-        # . ${pkgs.asdf-vm}/share/bash-completion/completions/asdf.bash
-        # . ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh
+  programs = {
+    bash = {
+      enable = true;
+      enableCompletion = false;
+      shellOptions = [];
+      historyControl = [ "ignoredups" "ignorespace" ];
+      shellAliases = config.programs.fish.shellAliases;
+      initExtra = builtins.readFile ./bashrc;
+      bashrcExtra = ''
+          export GPG_TTY="$(tty)"
+          export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+          # . ${pkgs.asdf-vm}/share/bash-completion/completions/asdf.bash
+          # . ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh
+      '';
+
+      # shellAliases = {
+      #   ga = "git add";
+      #   gc = "git commit";
+      #   gco = "git checkout";
+      #   gcp = "git cherry-pick";
+      #   gdiff = "git diff";
+      #   gl = "git prettylog";
+      #   gcount = "git shortlog -sn";
+      #   glg = "git log --stat";
+      #   gwch = "git whatchanged -p --abbrev-commit --pretty=medium";
+      #   gp = "git push";
+      #   gs = "git status";
+      #   gt = "git tag";
+      #   gfa = "git fetch --all";
+      #   gpa = "git pull --all";
+      # };
+    };
+
+    zsh = {
+      shellAliases = config.programs.fish.shellAliases;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+      completionInit =
+        ''
+          autoload -Uz compinit && compinit
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        ''
+      ;
+
+      # interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
+      #   (builtins.readFile ./zshrc)
+      # ]);
+
+      # defaultKeymap = "emacs";
+      # dirHashes = {
+      #     nixpkgs = "/etc/nix/path/nixpkgs";
+      #     home-manager = "/etc/nix/path/home-manager";
+      #     share = "/mnt/persist/share";
+      #     flake = "/mnt/persist/zerodeth/flake";
+
+      # loginExtra = ''
+      #     cd ~/workspace
+      # '';
+
+      # initExtraFirst = ''
+          # Set PATH, MANPATH, etc., for Homebrew.
+          # eval "$(/opt/homebrew/bin/brew shellenv)"
+      # '';
+      initExtra = ''
+          # Configure PNPM
+          # export PNPM_HOME="/Users/zerodeth/Library/pnpm"
+          # export PATH="$PNPM_HOME:$PATH"
+
+          # export SSH_AUTH_SOCK=~/.1password/agent.sock
+      '';
+    };
+
+    fish = {
+      enable = true;
+      package = pkgs.fish;
+      shellInit = ''
+          # Set syntax highlighting colours; var names defined here:
+          # http://fishshell.com/docs/current/index.html#variables-color
+          set fish_color_normal normal
+          set fish_color_command white
+          set fish_color_quote brgreen
+          set fish_color_redirection brblue
+          set fish_color_end white
+          set fish_color_error -o brred
+          set fish_color_param brpurple
+          set fish_color_comment --italics brblack
+          set fish_color_match cyan
+          set fish_color_search_match --background=brblack
+          set fish_color_operator cyan
+          set fish_color_escape white
+          set fish_color_autosuggestion brblack
     '';
 
-    shellAliases = {
-      ga = "git add";
-      gc = "git commit";
-      gco = "git checkout";
-      gcp = "git cherry-pick";
-      gdiff = "git diff";
-      gl = "git prettylog";
-      gcount = "git shortlog -sn";
-      glg = "git log --stat";
-      gwch = "git whatchanged -p --abbrev-commit --pretty=medium";
-      gp = "git push";
-      gs = "git status";
-      gt = "git tag";
-      gfa = "git fetch --all";
-      gpa = "git pull --all";
-    };
-  };
+      interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
+      #   "source ${sources.theme-bobthefish}/functions/fish_prompt.fish"
+      #   "source ${sources.theme-bobthefish}/functions/fish_right_prompt.fish"
+      #   "source ${sources.theme-bobthefish}/functions/fish_title.fish"
+          (builtins.readFile ./config.fish)
+          "set -g SHELL ${pkgs.fish}/bin/fish"
 
-  programs.zsh = {
-    enableAutosuggestions = true;
-    completionInit =
-      ''
-        autoload -Uz compinit && compinit
-        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-      ''
-    ;
+          # "set -gx SSH_AUTH_SOCK ~/.1password/agent.sock"
 
-    enableSyntaxHighlighting = true;
-  };
+          # Activate the iTerm 2 shell integration
+          # "iterm2_shell_integration"
+      ]);
 
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
-    #   "source ${sources.theme-bobthefish}/functions/fish_prompt.fish"
-    #   "source ${sources.theme-bobthefish}/functions/fish_right_prompt.fish"
-    #   "source ${sources.theme-bobthefish}/functions/fish_title.fish"
-      (builtins.readFile ./config.fish)
-      "set -g SHELL ${pkgs.fish}/bin/fish"
-    ]);
+      shellAliases = {
+        ga = "git add";
+        gc = "git commit";
+        gco = "git checkout";
+        gcp = "git cherry-pick";
+        gdiff = "git diff";
+        gl = "git prettylog";
+        gcount = "git shortlog -sn";
+        glg = "git log --stat";
+        gwch = "git whatchanged -p --abbrev-commit --pretty=medium";
+        gp = "git push";
+        gs = "git status";
+        gt = "git tag";
+        gfa = "git fetch --all";
+        gpa = "git pull --all";
 
-    shellAliases = {
-      ga = "git add";
-      gc = "git commit";
-      gco = "git checkout";
-      gcp = "git cherry-pick";
-      gdiff = "git diff";
-      gl = "git prettylog";
-      gcount = "git shortlog -sn";
-      glg = "git log --stat";
-      gwch = "git whatchanged -p --abbrev-commit --pretty=medium";
-      gp = "git push";
-      gs = "git status";
-      gt = "git tag";
-      gfa = "git fetch --all";
-      gpa = "git pull --all";
+        bnix = "nix-shell --run bash";
+        znix = "nix-shell --run zsh";
+        fnix = "nix-shell --run fish";
 
-    #   ls = "exa";
-    #   ll = "exa -l";
-    #   la = "exa --long --all --group --header --group-directories-first --sort=type --icons";
-    #   lla = "exa -la";
-      lg = "exa --long --all --group --header --git";
-    #   lt = "exa --long --all --group --header --tree --level ";
+        # oplogin = "op signin --account my.1password.com sherif@abdalla.uk";
 
-      rm = "trash-put";
-      unrm = "trash-restore";
-      rmcl = "trash-empty";
-      rml = "trash-list";
+      #   ls = "exa";
+      #   ll = "exa -l";
+      #   la = "exa --long --all --group --header --group-directories-first --sort=type --icons";
+      #   lla = "exa -la";
+        lg = "exa --long --all --group --header --git";
+      #   lt = "exa --long --all --group --header --tree --level ";
 
-      # ossw = "sudo nixos-rebuild switch --flake '/etc/nixos/#nixtst' --impure -v";
-      # hmsw = "home-manager switch --flake ~/.config/nixpkgs/#$USER";
-      # upa = "nix flake update ~/.config/nixpkgs -v && sudo nix flake update '/etc/nixos/' -v";
-      # fusw = "upa && ossw && hmsw";
-      # rusw = "ossw && hmsw";
-      ucl = "nix-collect-garbage -d && nix-store --gc && nix-store --repair --verify --check-contents && nix-store --optimise -vvv";
-      scl = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nix-store --repair --verify --check-contents && sudo nix-store --optimise -vvv";
-      acl = "ucl && scl";
+        rm = "trash-put";
+        unrm = "trash-restore";
+        rmcl = "trash-empty";
+        rml = "trash-list";
 
-    };
-  };
+        # ossw = "sudo nixos-rebuild switch --flake '/etc/nixos/#nixtst' --impure -v";
+        # hmsw = "home-manager switch --flake ~/.config/nixpkgs/#$USER";
+        # upa = "nix flake update ~/.config/nixpkgs -v && sudo nix flake update '/etc/nixos/' -v";
+        # fusw = "upa && ossw && hmsw";
+        # rusw = "ossw && hmsw";
+        ucl = "nix-collect-garbage -d && nix-store --gc && nix-store --repair --verify --check-contents && nix-store --optimise -vvv";
+        scl = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nix-store --repair --verify --check-contents && sudo nix-store --optimise -vvv";
+        acl = "ucl && scl";
 
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = false;
-    enableZshIntegration = true;
-    # Configuration written to ~/.config/starship.toml
-    settings = {
-      # add_newline = false;
-
-      # character = {
-      #   success_symbol = "[➜](bold green)";
-      #   error_symbol = "[➜](bold red)";
-      # };
-
-      # package.disabled = true;
-    };
-  };
-
-  programs.dircolors = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
-
-  # For information about available direnv options,
-  # please see: https://direnv.net/man/direnv.toml.1.html
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    config = {
-      global.load_dotenv = true;
-      global.strict_env = true;
-      global.warn_timeout = "400ms";
-    };
-  };
-
-  programs.gh = {
-    enable = true;
-    enableGitCredentialHelper = true;
-    settings = {
-      git_protocol = "ssh";
-      prompt = "enabled";
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    aliases = {
-      pushall = "!git remote | xargs -L1 git push --all";
-      graph = "log --decorate --oneline --graph";
-      add-nowhitespace = "!git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero -";
-      prettylog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
-    };
-
-    userName = "Sherif Abdalla";
-    userEmail = "sherif@abdalla.uk";
-    extraConfig = {
-      feature.manyFiles = true;
-      advice.detachedHead = false;
-      init.defaultBranch = "main";
-      commit.gpgSign = true;
-      push.autoSetupRemote = true;
-
-      # TODO: improve this hack (if possible)
-      gpg = lib.mkForce { program = lib.mkForce "${pkgs.gnupg}/bin/gpg2"; };
-      tag = {
-        forceSignAnnotated = true;
-        gpgSign = true;
       };
-      branch.autosetuprebase = "always";
-      color.ui = true;
-      core.askPass = ""; # needs to be empty to use terminal for ask pass
-      core.editor = "code --wait";
-      credential.helper = "store"; # want to make this more secure
-      credential.credentialStore = "gpg";
-      github.user = "zerodeth";
-      push.default = "tracking";
+
+      # Abbreviate commonly used functions
+      # An abbreviation will expand after <space> or <Enter> is hit
+      shellAbbrs = {
+          # oplogin = "op signin my.1password.com sherif@abdalla.uk";
+
+          # Administer like a sir
+          please = "sudo";
+
+          # Personal/Work spacess
+          ws = "cd ~/workspace";
+          wsp = "cd ~/workspace/personal";
+          wsb = "cd ~/workspace/business";
+          nixos-config = "cd ~/workspace/nixos-config";
+      };
+
+      plugins = [
+          # {
+          #     name = "iterm2-shell-integration";
+          #     src = ./iterm2_shell_integration.fish;
+          # }
+          {
+              name = "fish-fzf";
+              src = pkgs.fetchFromGitHub {
+              owner = "jethrokuan";
+              repo = "fzf";
+              rev = "479fa67d7439b23095e01b64987ae79a91a4e283";
+              sha256 = "0k6l21j192hrhy95092dm8029p52aakvzis7jiw48wnbckyidi6v";
+              };
+          }
+          # {
+          #     name = "fzf";
+          #     src = pkgs.fetchFromGitHub {
+          #     owner = "PatrickF1";
+          #     repo = "fzf.fish";
+          #     rev = "6d8e962f3ed84e42583cec1ec4861d4f0e6c4eb3";
+          #     sha256 = "sha256-0rnd8oJzLw8x/U7OLqoOMQpK81gRc7DTxZRSHxN9YlM";
+          #     };
+          # }
+          # Need this when using Fish as a default macOS shell in order to pick
+          # up ~/.nix-profile/bin
+          # {
+          #     name = "nix-env";
+          #     src = pkgs.fetchFromGitHub {
+          #     owner = "lilyball";
+          #     repo = "nix-env.fish";
+          #     rev = "00c6cc762427efe08ac0bd0d1b1d12048d3ca727";
+          #     sha256 = "1hrl22dd0aaszdanhvddvqz3aq40jp9zi2zn0v1hjnf7fx4bgpma";
+          #     };
+          # }
+          {
+              name = "fish-abbreviation-tips";
+              src = pkgs.fetchFromGitHub {
+              owner = "gazorby";
+              repo = "fish-abbreviation-tips";
+              rev = "8ed76a62bb044ba4ad8e3e6832640178880df485";
+              sha256 = "05b5qp7yly7mwsqykjlb79gl24bs6mbqzaj5b3xfn3v2b7apqnqp";
+              };
+          }
+      ];
     };
 
-    signing = lib.mkForce {
-      # key = "~/.ssh/id_ed25519";
-      # signByDefault = builtins.stringLength "~/.ssh/id_ed25519" > 0;
-      key = "FDA619F16BBFA377";
-      signByDefault = true;
-      gpgPath = "${pkgs.gnupg}/bin/gpg2";
+    starship = {
+      enable = true;
+      enableBashIntegration = false;
+      enableZshIntegration = true;
+      enableFishIntegration = false;
+      # Configuration written to ~/.config/starship.toml
+      settings = {
+        add_newline = true;
+
+        # character = {
+        #   success_symbol = "[➜](bold green)";
+        #   error_symbol = "[➜](bold red)";
+        # };
+
+        # package.disabled = true;
+      };
     };
 
-    lfs.enable = true;
-    ignores = [ "*~" "*.swp" "*.history" "*.terraform/" "*.nix-node" "*.direnv" "result" ];
- };
+    dircolors = {
+      enable = true;
+      enableBashIntegration = false;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+      extraConfig = ''
+        TERM alacritty
+    '';
+      settings = {
+          ".iso" = "01;31"; # .iso files bold red like .zip and other archives
+          ".gpg" = "01;33"; # .gpg files bold yellow
+          # Images to non-bold magenta instead of bold magenta like videos
+          ".bmp"   = "00;35";
+          ".gif"   = "00;35";
+          ".jpeg"  = "00;35";
+          ".jpg"   = "00;35";
+          ".mjpeg" = "00;35";
+          ".mjpg"  = "00;35";
+          ".mng"   = "00;35";
+          ".pbm"   = "00;35";
+          ".pcx"   = "00;35";
+          ".pgm"   = "00;35";
+          ".png"   = "00;35";
+          ".ppm"   = "00;35";
+          ".svg"   = "00;35";
+          ".svgz"  = "00;35";
+          ".tga"   = "00;35";
+          ".tif"   = "00;35";
+          ".tiff"  = "00;35";
+          ".webp"  = "00;35";
+          ".xbm"   = "00;35";
+          ".xpm"   = "00;35";
+      };
+    };
+
+    # For information about available direnv options,
+    # please see: https://direnv.net/man/direnv.toml.1.html
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      # enableFishIntegration = true; # TODO: it's set multiple times
+      nix-direnv = {
+        enable = true;
+      };
+      config = {
+        global.load_dotenv = true;
+        global.strict_env = true;
+        global.warn_timeout = "400ms";
+      };
+    };
+
+    zoxide = {
+        # enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        enableFishIntegration = true;
+    };
+
+    gh = {
+      enable = true;
+      enableGitCredentialHelper = true;
+      settings = {
+        git_protocol = "ssh";
+        prompt = "enabled";
+        aliases = {
+          co = "pr checkout";
+          pv = "pr view";
+        };
+      };
+    };
+
+    git = {
+      enable = true;
+      aliases = {
+        pushall = "!git remote | xargs -L1 git push --all";
+        graph = "log --decorate --oneline --graph";
+        add-nowhitespace = "!git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero -";
+        prettylog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
+      };
+
+      userName = "Sherif Abdalla";
+      userEmail = "sherif@abdalla.uk";
+      extraConfig = {
+          core = {
+              # If git uses `ssh` from Nix the macOS-specific configuration in
+              # `~/.ssh/config` won't be seen as valid
+              # https://github.com/NixOS/nixpkgs/issues/15686#issuecomment-865928923
+              sshCommand = "/usr/bin/ssh";
+              # askPass = ""; # needs to be empty to use terminal for ask pass
+              editor = "code --wait";
+          };
+          color = {
+              ui = true;
+          };
+          diff = {
+            colorMoved = "default";
+          };
+          merge = {
+            conflictstyle = "zdiff3";
+          };
+          feature.manyFiles = true;
+          advice.detachedHead = false;
+          init.defaultBranch = "main";
+          commit.gpgSign = true;
+          push = {
+              autoSetupRemote = true;
+              default = "tracking";
+          };
+
+          # TODO: improve this hack (if possible)
+          gpg = lib.mkForce { program = lib.mkForce "${pkgs.gnupg}/bin/gpg2"; };
+          tag = {
+              forceSignAnnotated = true;
+              gpgSign = true;
+          };
+          branch.autosetuprebase = "always";
+          credential = {
+              helper = "store"; # want to make this more secure
+              credentialStore = "gpg";
+          };
+          github.user = "zerodeth";
+          # Clone git repos with URLs like "gh:zerodeth/dotfiles"
+          url."git@github.com:" = {
+            insteadOf = "gh:";
+            pushInsteadOf = "gh:";
+          };
+      };
+
+      signing = lib.mkForce {
+        # key = "~/.ssh/id_ed25519";
+        # signByDefault = builtins.stringLength "~/.ssh/id_ed25519" > 0;
+        key = "FDA619F16BBFA377";
+        signByDefault = true;
+        gpgPath = "${pkgs.gnupg}/bin/gpg2";
+      };
+
+      lfs.enable = true;
+      ignores = [ "*~" "*.swp" "*.history" ".DS_Store" "*.terraform/" "*.nix-node" "*.direnv" "result" ];
+    };
+
+    ssh = {
+      enable = true;
+      forwardAgent = false;
+      # AddKeysToAgent = true;
+      # useKeychain = true;
+      # identityFile = "~/.ssh/id_ed25519";
+      # identitiesOnly = true;
+      # logLevel = "INFO";
+      # serverAliveInterval = "60";
+      # serverAliveCountMax = "20";
+      # Compression = true;
+      # AddressFamily = "inet";
+      # protocol = "2";
+      # preferredAuthentications = "publickey";
+      # extraConfig = {
+      #   RequestTTY = "no";
+      # };
+      extraConfig = builtins.readFile ./config;
+
+      # ProxyCommand = "/usr/local/bin/krssh %h %p";
+      # hashKnownHosts = true;
+      # controlMaster = "auto";
+      # controlPath = "~/.ssh/master-%r@%h:%p";
+
+      # matchBlocks = {
+      #   "foo-host" = {
+      #     hostname = "host.foo.tld";
+      #     user = "root";
+      #     port = 22;
+      #     identityFile = "~/.ssh/id_ed25519";
+      #   };
+      #   "bastion-proxy" = {
+      #     hostname = "bastion.example.net";
+      #     user = "ec2-user";
+      #     port = 443;
+      #     identityFile = "~/.ssh/id_ed25519";
+      #     identitiesOnly = true;
+      #     dynamicForwards = [ { port = 8080; } ];
+      #     extraOptions = {
+      #       RequestTTY = "no";
+      #     };
+      #   };
+      #   work = {
+      #     host = (lib.concatStringsSep " " workHosts);
+      #     user = workUser;
+      #     proxyJump = "bastion-proxy";
+      #     certificateFile = "~/.ssh/id_ecdsa-cert.pub";
+      #     identitiesOnly = true;
+      #   };
+      # };
+    };
+
+    alacritty = {
+      enable = true;
+
+      # settings = {
+      #   env.TERM = "xterm-256color";
+
+      #   key_bindings = [
+      #     { key = "K"; mods = "Command"; chars = "ClearHistory"; }
+      #     { key = "V"; mods = "Command"; action = "Paste"; }
+      #     { key = "C"; mods = "Command"; action = "Copy"; }
+      #     { key = "Key0"; mods = "Command"; action = "ResetFontSize"; }
+      #     { key = "Equals"; mods = "Command"; action = "IncreaseFontSize"; }
+      #     { key = "Subtract"; mods = "Command"; action = "DecreaseFontSize"; }
+      #   ];
+      # };
+    };
+
+    kitty = {
+      enable = true;
+      extraConfig = builtins.readFile ./kitty;
+    };
+
+  };
+
+  #---------------------------------------------------------------------
+  # Services
+  #---------------------------------------------------------------------
+
+  # services = {
+  #   nix-daemon = {
+  #     enable = true;
+  #   };
+
+  #   tailscale = {
+  #     enable = true;
+  #     package = pkgs.tailscale;
+  #   };
+  # };
 
 }

@@ -54,6 +54,16 @@
     pkgs.byobu
     pkgs.docker
     pkgs.colima
+    pkgs.alacritty
+    pkgs.iterm2
+    pkgs.chatgpt-cli
+    pkgs.lima
+    pkgs.tmux
+    pkgs._1password
+    pkgs.tree
+    pkgs.tree-sitter
+    pkgs.nix-index
+    pkgs.fira-code
     # Fleek Bling
     pkgs.git
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
