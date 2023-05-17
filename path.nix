@@ -1,10 +1,10 @@
 { pkgs, misc, ... }: {
   # DO NOT EDIT: This file is managed by fleek. Manual changes will be overwritten.
- home.sessionPath = [
+ home.sessionPath = [ 
     "$HOME/bin"
     "$HOME/.local/bin"
     "$HOME/.gnupg"
-    "./services/tailscale"
-    "./darwin.nix"
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
  ];
 }

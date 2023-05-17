@@ -114,6 +114,8 @@
           # export PNPM_HOME="/Users/zerodeth/Library/pnpm"
           # export PATH="$PNPM_HOME:$PATH"
 
+          eval "$(/opt/homebrew/bin/brew shellenv)"
+
           #export SSH_AUTH_SOCK=~/.1password/agent.sock
           source ~/.config/op/plugins.sh
       '';
