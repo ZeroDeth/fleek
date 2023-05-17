@@ -35,6 +35,7 @@
     # NIXPKGS_ALLOW_UNFREE= "1";
     # NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM= "1";
     SSH_AUTH_SOCK = "~/.1password/agent.sock";
+    OP_BIOMETRIC_UNLOCK_ENABLED = "true";
   };
 
   # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
@@ -56,6 +57,8 @@
           export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
           # . ${pkgs.asdf-vm}/share/bash-completion/completions/asdf.bash
           # . ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh
+
+          source ~/.config/op/plugins.sh
       '';
 
       # shellAliases = {
@@ -111,7 +114,8 @@
           # export PNPM_HOME="/Users/zerodeth/Library/pnpm"
           # export PATH="$PNPM_HOME:$PATH"
 
-          # export SSH_AUTH_SOCK=~/.1password/agent.sock
+          #export SSH_AUTH_SOCK=~/.1password/agent.sock
+          source ~/.config/op/plugins.sh
       '';
     };
 

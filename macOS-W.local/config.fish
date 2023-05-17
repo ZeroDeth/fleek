@@ -192,7 +192,8 @@ set -gx PATH "$PNPM_HOME" $PATH
 
 # set -gx VISUAL code
 #set -gx JAVA_HOME (/usr/libexec/java_home -v 11)
-set -gx SSH_AUTH_SOCK ~/.1password/agent.sock
+#set -gx SSH_AUTH_SOCK ~/.1password/agent.sock
+source ~/.config/op/plugins.sh
 
 # set -U fish_user_paths /usr/local/bin $fish_user_paths
 # set -U fish_user_paths /usr/local/MacGPG2/bin $fish_user_paths
