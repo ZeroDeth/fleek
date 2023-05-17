@@ -59,11 +59,12 @@
     pkgs.chatgpt-cli
     pkgs.lima
     pkgs.tmux
-    pkgs._1password
     pkgs.tree
     pkgs.tree-sitter
     pkgs.nix-index
-    pkgs.fira-code
+    pkgs.topgrade
+    pkgs.trash-cli
+    pkgs.wezterm
     # Fleek Bling
     pkgs.git
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })

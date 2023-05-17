@@ -397,7 +397,7 @@
           };
           branch.autosetuprebase = "always";
           credential = {
-              helper = "store"; # want to make this more secure
+              helper = "osxkeychain"; # want to make this more secure
               credentialStore = "gpg";
           };
           github.user = "zerodeth";
