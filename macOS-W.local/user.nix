@@ -466,8 +466,8 @@
       # };
     };
 
-    alacritty = {
-      enable = true;
+    # alacritty = {
+    #   enable = true;
 
       # settings = {
       #   env.TERM = "xterm-256color";
@@ -481,11 +481,16 @@
       #     { key = "Subtract"; mods = "Command"; action = "DecreaseFontSize"; }
       #   ];
       # };
-    };
+    # };
 
-    kitty = {
+    # kitty = {
+    #   enable = true;
+    #   extraConfig = builtins.readFile ./kitty;
+    # };
+
+    topgrade = {
       enable = true;
-      extraConfig = builtins.readFile ./kitty;
+      # extraConfig = builtins.readFile ./topgrade; #TODO: Add config file by chezmoi for now
     };
 
   };

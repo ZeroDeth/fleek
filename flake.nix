@@ -62,8 +62,9 @@
           ./macOS-W.local/macOS-W.local.nix
           ./macOS-W.local/user.nix
           # self-manage fleek
-          # ./services/tailscale/default.nix
-          # ./macOS-W.local/darwin.nix
+          ./modules/terminal-emulator/alacritty
+          ./modules/terminal-emulator/kitty
+          ./modules/terminal-emulator/wezterm
           ({
            nixpkgs.overlays = [];
            home.packages = [
