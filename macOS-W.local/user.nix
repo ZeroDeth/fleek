@@ -118,6 +118,9 @@
 
           #export SSH_AUTH_SOCK=~/.1password/agent.sock
           source ~/.config/op/plugins.sh
+
+          # Configure ASDF
+          . $(brew --prefix asdf)/libexec/asdf.sh
       '';
     };
 
@@ -417,7 +420,7 @@
       };
 
       lfs.enable = true;
-      ignores = [ "*~" "*.swp" "*.history" ".DS_Store" "*.terraform/" "*.nix-node" "*.direnv" "result" ];
+      ignores = [ "*~" "*.swp" "*.history" ".DS_Store" "*.terraform/" "*.nix-node" "*.direnv" "result" "*.venv" "*.direnv" ];
     };
 
     ssh = {
