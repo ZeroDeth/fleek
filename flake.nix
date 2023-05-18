@@ -61,6 +61,7 @@
           # Host Specific configs
           ./macOS-W.local/macOS-W.local.nix
           ./macOS-W.local/user.nix
+          ./macOS-W.local/aliases.nix
           # self-manage fleek
           ./modules/terminal-emulator/alacritty
           ./modules/terminal-emulator/kitty
