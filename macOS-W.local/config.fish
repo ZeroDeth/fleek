@@ -152,14 +152,14 @@ export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 #-------------------------------------------------------------------------------
 # Krew is the plugin manager for kubectl command-line tool.
 # Show a tree of object hierarchies through ownerReferences.
-# set -gx PATH $PATH $HOME/.krew/bin
+set -gx PATH $PATH $HOME/.krew/bin
 
 #-------------------------------------------------------------------------------
 # Aliases
 #-------------------------------------------------------------------------------
 #
 #
-# . ~/.config/fish/kubectl_aliases.fish
+. ~/.config/aliases/kubectl_aliases #TODO: move to shell/aliasses.nix
 # [ -f "$HOME/.config/fish/kubectl_aliases.fish" ] && . "./kubectl_aliases.fish"
 
 # When you miswrite command, you can just write fuck and this tool will guess command you wanted to write.

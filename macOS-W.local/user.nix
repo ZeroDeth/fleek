@@ -39,6 +39,9 @@
   };
 
   # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
+  # home.file.".config/fish/kubectl_aliases.fish".source = ./kubectl_aliases.fish; #TODO: https://github.com/lccambiaghi/nixpkgs/blob/main/home/programs/shells/aliases.nix
+
+  home.file.".config/aliases/kubectl_aliases".source = ./kubectl_aliases;
 
   #---------------------------------------------------------------------
   # Programs
@@ -58,6 +61,10 @@
           # . ${pkgs.asdf-vm}/share/bash-completion/completions/asdf.bash
           # . ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh
 
+          # Aliases
+          source ~/.config/aliases/kubectl_aliases
+
+          # 1Password
           source ~/.config/op/plugins.sh
       '';
 
@@ -121,13 +128,18 @@
           # export PNPM_HOME="/Users/zerodeth/Library/pnpm"
           # export PATH="$PNPM_HOME:$PATH"
 
+          # Brew
           eval "$(/opt/homebrew/bin/brew shellenv)"
 
+          # 1Password
           #export SSH_AUTH_SOCK=~/.1password/agent.sock
           #source ~/.config/op/plugins.sh
 
           # Configure ASDF
           . $(brew --prefix asdf)/libexec/asdf.sh
+
+          # Aliases
+          source ~/.config/aliases/kubectl_aliases
       '';
     };
 
@@ -159,6 +171,7 @@
           (builtins.readFile ./config.fish)
           "set -g SHELL ${pkgs.fish}/bin/fish"
 
+          # 1Password
           # "set -gx SSH_AUTH_SOCK ~/.1password/agent.sock"
 
           # Activate the iTerm 2 shell integration

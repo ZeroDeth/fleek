@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/env
 
 # `.kubectl_aliases` is used to provide custom variables.
 #
@@ -6,7 +6,6 @@
 
 # === Aliases ===
 
-# alias kubectl="kubecolor"
 alias kubectl="kubecolor"
 alias kx='kubectx'
 alias kn='kubens'
