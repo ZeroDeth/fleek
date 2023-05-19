@@ -34,8 +34,8 @@
     # FLEEK_DEBUG= "1";
     # NIXPKGS_ALLOW_UNFREE= "1";
     # NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM= "1";
-    SSH_AUTH_SOCK = "~/.1password/agent.sock";
-    OP_BIOMETRIC_UNLOCK_ENABLED = "true";
+    # SSH_AUTH_SOCK = "~/.1password/agent.sock";
+    # OP_BIOMETRIC_UNLOCK_ENABLED = "true";
   };
 
   # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
@@ -124,7 +124,7 @@
           eval "$(/opt/homebrew/bin/brew shellenv)"
 
           #export SSH_AUTH_SOCK=~/.1password/agent.sock
-          source ~/.config/op/plugins.sh
+          #source ~/.config/op/plugins.sh
 
           # Configure ASDF
           . $(brew --prefix asdf)/libexec/asdf.sh
@@ -353,11 +353,11 @@
       enableGitCredentialHelper = true;
       settings = {
         git_protocol = "ssh";
-        prompt = "enabled";
-        aliases = {
-          co = "pr checkout";
-          pv = "pr view";
-        };
+        # prompt = "enabled";
+        # aliases = {
+        #   co = "pr checkout";
+        #   pv = "pr view";
+        # };
       };
     };
 
@@ -377,8 +377,8 @@
               # If git uses `ssh` from Nix the macOS-specific configuration in
               # `~/.ssh/config` won't be seen as valid
               # https://github.com/NixOS/nixpkgs/issues/15686#issuecomment-865928923
-              sshCommand = "/usr/bin/ssh";
-              # askPass = ""; # needs to be empty to use terminal for ask pass
+              # sshCommand = "/usr/bin/ssh";
+              askPass = ""; # needs to be empty to use terminal for ask pass
               editor = "code --wait";
           };
           color = {
@@ -407,15 +407,15 @@
           };
           branch.autosetuprebase = "always";
           credential = {
-              helper = "osxkeychain"; # want to make this more secure
+              helper = "store"; # want to make this more secure
               credentialStore = "gpg";
           };
           github.user = "zerodeth";
           # Clone git repos with URLs like "gh:zerodeth/dotfiles"
-          url."git@github.com:" = {
-            insteadOf = "gh:";
-            pushInsteadOf = "gh:";
-          };
+          # url."git@github.com:" = {
+          #   insteadOf = "gh:";
+          #   pushInsteadOf = "gh:";
+          # };
       };
 
       signing = lib.mkForce {
