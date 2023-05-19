@@ -110,6 +110,13 @@
           # eval "$(/opt/homebrew/bin/brew shellenv)"
       # '';
       initExtra = ''
+
+          # Nix
+          if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+            . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+          fi
+          # End Nix
+
           # Configure PNPM
           # export PNPM_HOME="/Users/zerodeth/Library/pnpm"
           # export PATH="$PNPM_HOME:$PATH"
