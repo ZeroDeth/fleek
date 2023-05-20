@@ -293,6 +293,14 @@
       settings = {
         add_newline = true;
 
+
+        time = {
+          disabled = true;
+          use_12hr = true;
+          time_format = "'%T'";
+          utc_time_offset = "'local'";
+        };
+
         # character = {
         #   success_symbol = "[➜](bold green)";
         #   error_symbol = "[➜](bold red)";
