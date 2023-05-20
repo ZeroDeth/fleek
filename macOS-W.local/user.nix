@@ -140,6 +140,7 @@
 
           # Aliases
           source ~/.config/aliases/kubectl_aliases
+
       '';
     };
 
@@ -307,6 +308,24 @@
         # };
 
         # package.disabled = true;
+
+        gcloud = {
+          disabled = false;
+          symbol = "'️🇬️ '";
+          # format = "'[$symbol$active]($style) '";
+          format = "'on [$symbol$account(@$domain)(\($project\))]($style) '";
+          # style = "'bold yellow'";
+          region_aliases = {
+            europe-west1 = "'ew1'";
+            europe-west2 = "'ew2'";
+          };
+          project_aliases = {
+            management = "'mgmt'";
+            production-core = "'prd-core'";
+            staging-core = "'stg-core'";
+          };
+        };
+
       };
     };
 
