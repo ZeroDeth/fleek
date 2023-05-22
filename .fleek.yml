@@ -18,6 +18,7 @@ packages:
     - nodejs-18_x
     - yarn
     - go
+    - gopls
     - duf
     - ctop
     - kitty
