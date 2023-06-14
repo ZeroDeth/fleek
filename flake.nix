@@ -35,8 +35,8 @@
           ./aliases.nix
           ./programs.nix
           # Host Specific configs
-          ./macOS-0.local/macOS-0.local.nix
-          ./macOS-0.local/user.nix
+          ./macOS-0.local/zerodeth.nix
+          ./macOS-0.local/host.nix
           # self-manage fleek
           ({
            nixpkgs.overlays = [];
@@ -59,8 +59,8 @@
           ./aliases.nix
           ./programs.nix
           # Host Specific configs
-          ./macOS-W.local/macOS-W.local.nix
-          ./macOS-W.local/user.nix
+          ./macOS-W.local/zerodeth.nix
+          ./macOS-W.local/host.nix
           ./macOS-W.local/aliases.nix
           # self-manage fleek
           ./modules/terminal-emulator/alacritty
