@@ -62,6 +62,7 @@ packages:
     - topgrade
     - trash-cli
     - wezterm
+    - devbox
 paths:
     - $HOME/bin
     - $HOME/.local/bin

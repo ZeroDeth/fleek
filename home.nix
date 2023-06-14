@@ -66,6 +66,7 @@
     pkgs.topgrade
     pkgs.trash-cli
     pkgs.wezterm
+    pkgs.devbox
     # Fleek Bling
     pkgs.git
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
