@@ -127,7 +127,7 @@
         httpdump = "sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\"";
 
         ## Using prettyping instead of ping
-        prettyping = "ping";
+        ping = "prettyping";
 
         # === macOS ===
 

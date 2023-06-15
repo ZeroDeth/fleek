@@ -63,6 +63,7 @@ packages:
     - trash-cli
     - wezterm
     - devbox
+    - prettyping
 paths:
     - $HOME/bin
     - $HOME/.local/bin
