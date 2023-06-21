@@ -1,8 +1,16 @@
 aliases:
   fleeks: cd ~/.local/share/fleek
   pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
-bling: none
-blocklist: []
+  apply-macOS-W.local: nix run --impure home-manager/master -- -b bak switch --flake .#zerodeth@macOS-W.local
+bling: high
+blocklist:
+  - starship
+  - exa
+  - bat
+  - atuin
+  - zoxide
+  - direnv
+  - neovim
 byo_git: false
 ejected: false
 flakedir: .local/share/fleek

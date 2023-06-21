@@ -289,7 +289,7 @@
       enable = true;
       enableBashIntegration = false;
       enableZshIntegration = true;
-      enableFishIntegration = true;
+      enableFishIntegration = false;
       # Configuration written to ~/.config/starship.toml
       settings = {
         add_newline = true;

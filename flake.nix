@@ -14,21 +14,21 @@
     fleek.url = "github:ublue-os/fleek";
 
     # Overlays
-
+    
 
   };
 
   outputs = { self, nixpkgs, home-manager, fleek, ... }@inputs: {
 
     # Available through 'home-manager --flake .#your-username@your-hostname'
-
+    
     homeConfigurations = {
-
+    
       "zerodeth@macOS-0.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         modules = [
-          ./home.nix
+          ./home.nix 
           ./path.nix
           ./shell.nix
           ./user.nix
@@ -44,12 +44,12 @@
 
         ];
       };
-
+      
       "zerodeth@macOS-W.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         modules = [
-          ./home.nix
+          ./home.nix 
           ./path.nix
           ./shell.nix
           ./user.nix
@@ -69,7 +69,7 @@
 
         ];
       };
-
+      
     };
   };
 }
