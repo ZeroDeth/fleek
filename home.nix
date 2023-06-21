@@ -48,7 +48,6 @@
     pkgs.chezmoi
     pkgs.distrobox
     pkgs.shellcheck
-    pkgs.tailscale
     pkgs.cachix
     pkgs.fish
     pkgs.thefuck

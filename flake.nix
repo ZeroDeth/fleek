@@ -36,13 +36,10 @@
           ./programs.nix
           # Host Specific configs
           ./macOS-0.local/zerodeth.nix
-          ./macOS-0.local/host.nix
+          ./macOS-0.local/custom.nix
           # self-manage fleek
           ({
            nixpkgs.overlays = [];
-           home.packages = [
-            fleek.packages.x86_64-darwin.default
-          ];
           })
 
         ];
@@ -60,7 +57,7 @@
           ./programs.nix
           # Host Specific configs
           ./macOS-W.local/zerodeth.nix
-          ./macOS-W.local/host.nix
+          ./macOS-W.local/custom.nix
           ./macOS-W.local/aliases.nix
           # self-manage fleek
           ./modules/terminal-emulator/alacritty
@@ -68,9 +65,6 @@
           ./modules/terminal-emulator/wezterm
           ({
            nixpkgs.overlays = [];
-           home.packages = [
-            fleek.packages.aarch64-darwin.default
-          ];
           })
 
         ];
