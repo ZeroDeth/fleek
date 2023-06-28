@@ -4,13 +4,13 @@ aliases:
   apply-macOS-W.local: nix run --impure home-manager/master -- -b bak switch --flake .#zerodeth@macOS-W.local
 bling: high
 blocklist:
-  - starship
-  - exa
-  - bat
-  - atuin
-  - zoxide
-  - direnv
-  - neovim
+- starship
+- exa
+- bat
+- atuin
+- zoxide
+- direnv
+- neovim
 byo_git: false
 ejected: false
 flakedir: .local/share/fleek
@@ -29,6 +29,15 @@ packages:
 - yarn
 - go
 - gopls
+- gotests
+- gomodifytags
+- impl
+# - goplay
+# - div
+# - staticcheck
+- golint
+- gotools
+# - gorename
 - duf
 - ctop
 - kitty

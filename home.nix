@@ -25,6 +25,11 @@
     pkgs.yarn
     pkgs.go
     pkgs.gopls
+    pkgs.gotests
+    pkgs.gomodifytags
+    pkgs.impl
+    pkgs.golint
+    pkgs.gotools
     pkgs.duf
     pkgs.ctop
     pkgs.kitty
