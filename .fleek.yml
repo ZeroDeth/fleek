@@ -29,15 +29,11 @@ packages:
 - yarn
 - go
 - gopls
-- gotests
-- gomodifytags
-- impl
-# - goplay
-# - div
-# - staticcheck
-- golint
-- gotools
-# - gorename
+# - gotests
+# - gomodifytags
+# - impl
+# - golint
+# - gotools
 - duf
 - ctop
 - kitty
