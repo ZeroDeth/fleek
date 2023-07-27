@@ -89,7 +89,9 @@
     zsh = {
       shellAliases = config.programs.fish.shellAliases;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting = {
+        enable = true;
+      };
       completionInit =
         ''
           autoload -Uz compinit && compinit
