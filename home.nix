@@ -9,6 +9,9 @@
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
       
+      
+      allowBroken = true;
+      
     };
   };
 
@@ -25,11 +28,6 @@
     pkgs.yarn
     pkgs.go
     pkgs.gopls
-    pkgs.gotests
-    pkgs.gomodifytags
-    pkgs.impl
-    pkgs.golint
-    pkgs.gotools
     pkgs.duf
     pkgs.ctop
     pkgs.kitty
@@ -51,7 +49,6 @@
     pkgs.python3
     pkgs.pre-commit
     pkgs.chezmoi
-    pkgs.distrobox
     pkgs.shellcheck
     pkgs.cachix
     pkgs.fish
