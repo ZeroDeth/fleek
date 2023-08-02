@@ -391,8 +391,10 @@
     };
 
     gh = {
-      enable = true;
-      enableGitCredentialHelper = true;
+      enable = false;         #TODO: Moved and working well under homebrew
+      gitCredentialHelper = {
+        enable = true;
+      };
       settings = {
         git_protocol = "ssh";
         # prompt = "enabled";
