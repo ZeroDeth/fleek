@@ -1,109 +1,114 @@
 aliases:
-    apply-macOS-W.local: nix run --impure home-manager/master -- -b bak switch --flake .#zerodeth@macOS-W.local
-    fleeks: cd ~/.local/share/fleek
-    pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
+  apply-macOS-W.local: nix run --impure home-manager/master -- -b bak switch --flake .#zerodeth@macOS-W.local
+  fleeks: cd ~/.local/share/fleek
+  pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
 allow_broken: true
 bling: high
 blocklist:
-    - starship
-    - exa
-    - bat
-    - atuin
-    - zoxide
-    - direnv
-    - neovim
+- starship
+- exa
+- bat
+- atuin
+- zoxide
+- direnv
+- neovim
 byo_git: false
 ejected: false
 flakedir: .local/share/fleek
 git:
-    autocommit: false
-    autopull: true
-    autopush: true
-    enabled: true
+  autocommit: false
+  autopull: true
+  autopush: true
+  enabled: true
 min_version: ""
 name: Fleek Configuration
 overlays: {}
 packages:
-    - helix
-    - gtop
-    - nodejs-18_x
-    - yarn
-    - go
-    - gopls
-    - duf
-    - ctop
-    - kitty
-    - git
-    - htop
-    - glab
-    - fzf
-    - ripgrep
-    - vscode
-    - lazygit
-    - jq
-    - yq
-    - neofetch
-    - btop
-    - cheat
-    - gnupg
-    - pinentry_mac
-    - python3
-    - pre-commit
-    - chezmoi
-    - shellcheck
-    - cachix
-    - fish
-    - thefuck
-    - byobu
-    - docker
-    - colima
-    - alacritty
-    - iterm2
-    - chatgpt-cli
-    - lima
-    - tmux
-    - tree
-    - tree-sitter
-    - nix-index
-    - topgrade
-    - trash-cli
-    - wezterm
-    - devbox
-    - prettyping
+- helix
+- gtop
+- nodejs-18_x
+- yarn
+- go
+- gopls
+# - gotests
+# - gomodifytags
+# - impl
+# - golint
+# - gotools
+- duf
+- ctop
+- kitty
+- git
+- htop
+- glab
+- fzf
+- ripgrep
+- vscode
+- lazygit
+- jq
+- yq
+- neofetch
+- btop
+- cheat
+- gnupg
+- pinentry_mac
+- python3
+- pre-commit
+- chezmoi
+- shellcheck
+- cachix
+- fish
+- thefuck
+- byobu
+- docker
+- colima
+- alacritty
+- iterm2
+- chatgpt-cli
+- lima
+- tmux
+- tree
+- tree-sitter
+- nix-index
+- topgrade
+- trash-cli
+- wezterm
+- devbox
+- prettyping
 paths:
-    - $HOME/bin
-    - $HOME/.local/bin
-    - $HOME/.gnupg
-    - /opt/homebrew/bin
-    - /opt/homebrew/sbin
+- $HOME/bin
+- $HOME/.local/bin
+- $HOME/.gnupg
+- /opt/homebrew/bin
+- /opt/homebrew/sbin
 programs:
-    - dircolors
-    - exa
-    - bat
-    - atuin
-    - zoxide
-    - direnv
-    - neovim
-    - zsh.oh-my-zsh
-    - starship
-    - gpg
+- dircolors
+- exa
+- bat
+- atuin
+- zoxide
+- direnv
+- neovim
+- zsh.oh-my-zsh
+- starship
+- gpg
 shell: zsh
 systems:
-    - arch: x86_64
-      home: ""
-      hostname: macOS-0.local
-      os: darwin
-      username: zerodeth
-    - arch: aarch64
-      home: ""
-      hostname: macOS-W.local
-      os: darwin
-      username: zerodeth
+- arch: x86_64
+  home: ""
+  hostname: macOS-0.local
+  os: darwin
+  username: zerodeth
+- arch: aarch64
+  home: ""
+  hostname: macOS-W.local
+  os: darwin
+  username: zerodeth
 track: nixos-unstable
 unfree: true
 users:
-    - email: sherif@abdalla.uk
-      name: Sherif Abdalla
-      ssh_private_key_file: ~/.ssh/id_ed25519
-      ssh_public_key_file: ~/.ssh/id_ed25519.pub
-      username: zerodeth
+- email: sherif@abdalla.uk
+  name: Sherif Abdalla
+  ssh_private_key_file: ~/.ssh/id_ed25519
+  ssh_public_key_file: ~/.ssh/id_ed25519.pub
+  username: zerodeth
