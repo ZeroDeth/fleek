@@ -291,7 +291,7 @@
       enable = true;
       enableBashIntegration = false;
       enableZshIntegration = true;
-      enableFishIntegration = false;
+      enableFishIntegration = true;
       # Configuration written to ~/.config/starship.toml
       settings = {
         add_newline = true;
@@ -391,7 +391,7 @@
     };
 
     gh = {
-      enable = false;         #TODO: Moved and working well under homebrew
+      enable = true;         #TODO: Moved and working well under homebrew
       gitCredentialHelper = {
         enable = true;
       };
