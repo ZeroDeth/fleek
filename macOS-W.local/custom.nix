@@ -146,6 +146,9 @@
           # Aliases
           source ~/.config/aliases/kubectl_aliases
 
+          # Warp - For zsh subshells
+          printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
+
       '';
     };
 
