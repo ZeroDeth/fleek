@@ -109,4 +109,4 @@ export VISUAL='code'
 #-------------------------------------------------------------------------------
 #
 # For bash subshells.
-printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "bash"}}\x9c'
+# printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "bash"}}\x9c'
