@@ -140,6 +140,9 @@
           # Configure ASDF
           . $(brew --prefix asdf)/libexec/asdf.sh
 
+          # Colima and Docker https://stackoverflow.com/a/72560928/6611169
+          export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+
           # Aliases
           source ~/.config/aliases/kubectl_aliases
 

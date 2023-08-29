@@ -145,7 +145,7 @@ funcsave fish_greeting
 #-------------------------------------------------------------------------------
 
 # Setup the DOCKER_HOST for Colima
-export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+set -gx DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 
 #-------------------------------------------------------------------------------
 # Kubernetes
