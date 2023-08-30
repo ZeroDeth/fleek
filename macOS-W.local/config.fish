@@ -159,9 +159,9 @@ set -gx PATH $PATH $HOME/.krew/bin
 #-------------------------------------------------------------------------------
 #
 # For fish subshells.
-if status is-interactive
-    printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish"}}\x9c'
-end
+# if status is-interactive
+#     printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish"}}\x9c'
+# end
 
 #-------------------------------------------------------------------------------
 # Aliases
