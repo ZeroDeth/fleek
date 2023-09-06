@@ -319,10 +319,10 @@
 
         gcloud = {
           disabled = false;
-          symbol = "'️🇬️ '";
-          # format = "'[$symbol$active]($style) '";
-          format = "'on [$symbol$account(@$domain)(\($project\))]($style) '";
-          # style = "'bold yellow'";
+          symbol = "'️🇬️'";
+          # format = "'[$symbol$active]($style)'";
+          format = "'on [$symbol$account(@$domain)(\($project\))]($style)'";
+          style = "'bold yellow'";
           region_aliases = {
             europe-west1 = "'ew1'";
             europe-west2 = "'ew2'";
@@ -331,6 +331,10 @@
             management = "'mgmt'";
             production-core = "'prd-core'";
             staging-core = "'stg-core'";
+            testing-core = "'tst-core'";
+            production-earth = "'prd-earth'";
+            staging-earth = "'stg-earth'";
+            testing-earth = "'testnet-earth'";
           };
         };
 
