@@ -89,6 +89,7 @@
     zsh = {
       shellAliases = config.programs.fish.shellAliases;
       enableAutosuggestions = true;
+      # enableCompletion = true;
       syntaxHighlighting = {
         enable = true;
       };
