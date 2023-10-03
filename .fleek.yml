@@ -3,6 +3,7 @@ aliases:
   fleeks: cd ~/.local/share/fleek
   pinentry-mac: ~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
 allow_broken: true
+auto_gc: false
 bling: high
 blocklist:
 - starship
@@ -46,7 +47,7 @@ packages:
 - vscode
 - lazygit
 - jq
-- yq
+- yq-go
 - neofetch
 - btop
 - cheat
@@ -98,11 +99,23 @@ systems:
   home: ""
   hostname: macOS-0.local
   os: darwin
+  user:
+    email: sherif@abdalla.uk
+    name: Sherif Abdalla
+    ssh_private_key_file: ~/.ssh/id_ed25519
+    ssh_public_key_file: ~/.ssh/id_ed25519.pub
+    username: zerodeth
   username: zerodeth
 - arch: aarch64
   home: ""
   hostname: macOS-W.local
   os: darwin
+  user:
+    email: sherif@abdalla.uk
+    name: Sherif Abdalla
+    ssh_private_key_file: ~/.ssh/id_ed25519
+    ssh_public_key_file: ~/.ssh/id_ed25519.pub
+    username: zerodeth
   username: zerodeth
 track: nixos-unstable
 unfree: true

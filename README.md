@@ -16,8 +16,6 @@ Aliases were added to the config to make it easier to use. To use them, run the 
 $ fleeks
 # To apply the configuration
 $ apply-$(hostname)
-# You can install Fleek with nix profile
-$ nix profile install github:ublue-os/fleek
 ```
 
 Your actual aliases are listed below:

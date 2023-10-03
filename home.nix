@@ -39,7 +39,7 @@
     pkgs.vscode
     pkgs.lazygit
     pkgs.jq
-    pkgs.yq
+    pkgs.yq-go
     pkgs.neofetch
     pkgs.btop
     pkgs.cheat
@@ -78,10 +78,11 @@
     pkgs.vscode
     pkgs.lazygit
     pkgs.jq
-    pkgs.yq
+    pkgs.yq-go
     pkgs.neofetch
     pkgs.btop
     pkgs.cheat
+    pkgs.just
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
   fonts.fontconfig.enable = true; 
