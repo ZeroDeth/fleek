@@ -48,4 +48,8 @@
     };
   };
 
+  # Temporary solution: https://github.com/ublue-os/fleek/issues/252
+  # Running `nix flake update` then `home-manager news --flake .`
+  news.display = "notify";
+
 }
