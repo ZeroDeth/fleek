@@ -4,12 +4,11 @@
   # programs are installed and configuration applied to dotfiles
   # add your personalized program configuration in ./user.nix   
 
-  # Bling supplied programs 
-    programs.eza.enable = true;
+  # Bling supplied programs
 
   # User specified programs 
     programs.dircolors.enable = true; 
-    programs.exa.enable = true; 
+    programs.eza.enable = true; 
     programs.bat.enable = true; 
     programs.atuin.enable = true; 
     programs.zoxide.enable = true; 

@@ -7,7 +7,7 @@ auto_gc: false
 bling: high
 blocklist:
 - starship
-- exa
+- eza
 - bat
 - atuin
 - zoxide
@@ -84,7 +84,7 @@ paths:
 - /opt/homebrew/sbin
 programs:
 - dircolors
-- exa
+- eza
 - bat
 - atuin
 - zoxide
