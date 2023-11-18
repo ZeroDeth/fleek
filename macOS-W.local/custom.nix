@@ -522,6 +522,8 @@
         gpgPath = "${pkgs.gnupg}/bin/gpg2";
       };
 
+      diff-so-fancy.enable = false;
+
       lfs.enable = true;
       ignores = [ "*~" "*.swp" "*.history" ".DS_Store" "*.terraform/" "*.nix-node" "*.direnv" "result" "*.venv" "*.direnv" "*.idea" ];
     };
