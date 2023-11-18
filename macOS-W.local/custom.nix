@@ -41,7 +41,13 @@
   # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
   # home.file.".config/fish/kubectl_aliases.fish".source = ./kubectl_aliases.fish; #TODO: https://github.com/lccambiaghi/nixpkgs/blob/main/home/programs/shells/aliases.nix
 
-  home.file.".config/aliases/kubectl_aliases".source = ./kubectl_aliases;
+  # home.file.".config/aliases/kubectl_aliases".source = ./kubectl_aliases;
+
+    home.file = {
+    ".config/aliases/kubectl_aliases" = {
+        source = ./kubectl_aliases;
+    };
+  };
 
   #---------------------------------------------------------------------
   # Programs
