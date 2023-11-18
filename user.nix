@@ -46,6 +46,21 @@
       enableZshIntegration = true;
       enableFishIntegration = true;
     };
+
+    rtx = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+      settings = {
+        settings = {
+          verbose = false;
+          experimental = false;
+          asdf_compat = true;
+        };
+      };
+    };
+
   };
 
   # Temporary solution: https://github.com/ublue-os/fleek/issues/252
