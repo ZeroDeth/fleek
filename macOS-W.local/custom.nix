@@ -47,6 +47,13 @@
     ".config/aliases/kubectl_aliases" = {
         source = ./kubectl_aliases;
     };
+    ".tmux.conf" = {
+        text = ''
+        set-window-option -g mode-keys vi
+        set -g default-terminal "screen-256color"
+        set -ga terminal-overrides ',screen-256color:Tc'
+        '';
+    };
     ".tool-versions" = {
         text = ''
         # pre-commit 2.17.0
