@@ -130,10 +130,37 @@
     zsh = {
       shellAliases = config.programs.fish.shellAliases;
       enableAutosuggestions = true;
-      # enableCompletion = true;
+#      enableCompletion = true; #TODO: already enabled by default
       syntaxHighlighting = {
         enable = true;
       };
+      defaultKeymap = "emacs";
+      history = {
+        size = 10000;
+        save = 10000;
+        expireDuplicatesFirst = true;
+        ignoreDups = true;
+        ignoreSpace = true;
+      };
+      historySubstringSearch.enable = true;
+
+      plugins = [
+        {
+          name = "fast-syntax-highlighting";
+          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+        }
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.5.0";
+            sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
+          };
+        }
+      ];
+
       completionInit =
         ''
           autoload -Uz compinit && compinit
@@ -141,11 +168,14 @@
         ''
       ;
 
+#      envExtra = ''
+#        export PATH=$PATH:/opt/homebrew/bin
+#      '';
+
       # interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
       #   (builtins.readFile ./zshrc)
       # ]);
 
-      # defaultKeymap = "emacs";
       # dirHashes = {
       #     nixpkgs = "/etc/nix/path/nixpkgs";
       #     home-manager = "/etc/nix/path/home-manager";
