@@ -68,6 +68,9 @@
     pkgs.wezterm
     pkgs.devbox
     pkgs.prettyping
+    pkgs.fh
+    pkgs.colmena
+    pkgs.arkade
     # Fleek Bling
     pkgs.git
     pkgs.htop
