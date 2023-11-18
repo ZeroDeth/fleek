@@ -29,7 +29,7 @@ packages:
     - gtop
     - nodejs-18_x
     - yarn
-    - go
+    - go_1_20
     - gopls
     - duf
     - ctop
