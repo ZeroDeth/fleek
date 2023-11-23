@@ -74,6 +74,7 @@ packages:
     - fh
     - colmena
     - arkade
+    - ntfy-sh
 paths:
     - $HOME/bin
     - $HOME/.local/bin

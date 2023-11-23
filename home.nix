@@ -71,6 +71,7 @@
     pkgs.fh
     pkgs.colmena
     pkgs.arkade
+    pkgs.ntfy-sh
     # Fleek Bling
     pkgs.git
     pkgs.htop
