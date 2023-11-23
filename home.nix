@@ -26,7 +26,7 @@
     pkgs.gtop
     pkgs.nodejs-18_x
     pkgs.yarn
-    pkgs.go
+    pkgs.go_1_20
     pkgs.gopls
     pkgs.duf
     pkgs.ctop
