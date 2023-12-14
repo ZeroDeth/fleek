@@ -14,25 +14,25 @@
     fleek.url = "https://flakehub.com/f/ublue-os/fleek/*.tar.gz";
 
     # Overlays
-
+    
 
   };
 
   outputs = { self, nixpkgs, home-manager, fleek, ... }@inputs: {
-
+    
      packages.aarch64-darwin.fleek = fleek.packages.aarch64-darwin.default;
-
+    
      packages.x86_64-darwin.fleek = fleek.packages.x86_64-darwin.default;
-
+    
     # Available through 'home-manager --flake .#your-username@your-hostname'
-
+    
     homeConfigurations = {
-
+    
       "zerodeth@macOS-0.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         modules = [
-          ./home.nix
+          ./home.nix 
           ./path.nix
           ./shell.nix
           ./user.nix
@@ -53,12 +53,12 @@
 
         ];
       };
-
+      
       "zerodeth@macOS-W.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         modules = [
-          ./home.nix
+          ./home.nix 
           ./path.nix
           ./shell.nix
           ./user.nix
@@ -67,11 +67,7 @@
           # Host Specific configs
           ./macOS-W.local/zerodeth.nix
           ./macOS-W.local/custom.nix
-          ./macOS-W.local/aliases.nix
           # self-manage fleek
-          ./modules/terminal-emulator/alacritty
-          ./modules/terminal-emulator/kitty
-          ./modules/terminal-emulator/wezterm
           {
             home.packages = [
               fleek.packages.aarch64-darwin.default
@@ -83,7 +79,7 @@
 
         ];
       };
-
+      
     };
   };
 }
