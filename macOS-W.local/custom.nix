@@ -563,10 +563,10 @@
           };
           github.user = "zerodeth";
           # Clone git repos with URLs like "gh:zerodeth/dotfiles"
-          # url."git@github.com:" = {
-          #   insteadOf = "gh:";
-          #   pushInsteadOf = "gh:";
-          # };
+          url."git@github.com:" = {
+            insteadOf = "gh:";
+            pushInsteadOf = "gh:";
+          };
       };
 
       signing = lib.mkForce {
