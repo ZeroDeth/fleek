@@ -41,7 +41,50 @@
   # home.file.".gnupg/gpg-agent.conf".source = ./gpg-agent.conf;
   # home.file.".config/fish/kubectl_aliases.fish".source = ./kubectl_aliases.fish; #TODO: https://github.com/lccambiaghi/nixpkgs/blob/main/home/programs/shells/aliases.nix
 
-  home.file.".config/aliases/kubectl_aliases".source = ./kubectl_aliases;
+  # home.file.".config/aliases/kubectl_aliases".source = ./kubectl_aliases;
+
+    home.file = {
+    ".config/aliases/kubectl_aliases" = {
+        source = ./kubectl_aliases;
+    };
+    ".tmux.conf" = {
+        text = ''
+        set-window-option -g mode-keys vi
+        set -g default-terminal "screen-256color"
+        set -ga terminal-overrides ',screen-256color:Tc'
+        '';
+    };
+    ".tool-versions" = {
+        text = ''
+        # pre-commit 2.17.0
+        # nodejs 17.9.0
+        # flutter 2.10.5-stable
+        # sbt 1.5.2
+        # python 3.10.4
+        # poetry 1.6.1
+        # yarn 1.22.19
+        # gradle 7.5.1
+        # java openjdk-19.0.2
+        # maven 3.9.1
+        # talosctl 1.3.6
+        # clusterctl 1.4.1
+
+        # nodejs lts
+        # ruby 3.1.0
+        # python 3.10.1
+        # direnv 2.32.2
+        # golang 1.18.9
+        # golang 1.19.12
+        golang 1.20.6
+        # neovim nightly
+        terraform 1.4.2
+        terraform 1.4.7
+        terraform 1.5.7
+        # terraform-validator 3.1.3
+        # terraform-docs 0.16.0
+        '';
+      };
+  };
 
   #---------------------------------------------------------------------
   # Programs
@@ -89,10 +132,37 @@
     zsh = {
       shellAliases = config.programs.fish.shellAliases;
       enableAutosuggestions = true;
-      # enableCompletion = true;
+#      enableCompletion = true; #TODO: already enabled by default
       syntaxHighlighting = {
         enable = true;
       };
+      defaultKeymap = "emacs";
+      history = {
+        size = 10000;
+        save = 10000;
+        expireDuplicatesFirst = true;
+        ignoreDups = true;
+        ignoreSpace = true;
+      };
+      historySubstringSearch.enable = true;
+
+      plugins = [
+        {
+          name = "fast-syntax-highlighting";
+          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+        }
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.5.0";
+            sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
+          };
+        }
+      ];
+
       completionInit =
         ''
           autoload -Uz compinit && compinit
@@ -100,11 +170,14 @@
         ''
       ;
 
+#      envExtra = ''
+#        export PATH=$PATH:/opt/homebrew/bin
+#      '';
+
       # interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
       #   (builtins.readFile ./zshrc)
       # ]);
 
-      # defaultKeymap = "emacs";
       # dirHashes = {
       #     nixpkgs = "/etc/nix/path/nixpkgs";
       #     home-manager = "/etc/nix/path/home-manager";
@@ -303,6 +376,13 @@
       settings = {
         add_newline = true;
 
+        git_branch = {
+          disabled = false;
+          symbol = " ";
+          style = "bold purple";
+          always_show_remote = true;
+          only_attached = false;
+        };
 
         time = {
           disabled = true;
@@ -316,29 +396,45 @@
         #   error_symbol = "[➜](bold red)";
         # };
 
-        # package.disabled = true;
-
-        gcloud = {
-          disabled = false;
-          symbol = "'️🇬️'";
-          # format = "'[$symbol$active]($style)'";
-          format = "'on [$symbol$account(@$domain)(\($project\))]($style)'";
-          style = "'bold yellow'";
-          region_aliases = {
-            europe-west1 = "'ew1'";
-            europe-west2 = "'ew2'";
-          };
-          project_aliases = {
-            management = "'mgmt'";
-            production-core = "'prd-core'";
-            staging-core = "'stg-core'";
-            testing-core = "'tst-core'";
-            production-earth = "'prd-earth'";
-            staging-earth = "'stg-earth'";
-            testing-earth = "'testnet-earth'";
-          };
+        directory = {
+          style = "blue";
+          truncate_to_repo = false;
+          truncation_length = 8;
         };
 
+        hostname = {
+          disabled = false;
+          style = "bold green";
+          ssh_only = true;
+          ssh_symbol = "🌏 ";
+        };
+
+        package.disabled = false;
+        golang.disabled = false;
+        python.disabled = false;
+        ruby.disabled = false;
+        kubernetes.disabled = false;
+        aws.disabled = false;
+        gcloud = {
+          disabled = false;
+          symbol = "☁️ ";
+          # format = "'[$symbol$active]($style)'";
+          format = "on [$symbol$account(@$domain)(\($project\))]($style) ";
+          style = "bold yellow";
+          region_aliases = {
+            europe-west1 = "ew1";
+            europe-west2 = "ew2";
+          };
+          project_aliases = {
+            management = "mgmt";
+            production-core = "prd-core";
+            staging-core = "stg-core";
+            testing-core = "tst-core";
+            production-earth = "prd-earth";
+            staging-earth = "stg-earth";
+            testing-earth = "testnet-earth";
+          };
+        };
       };
     };
 
@@ -467,10 +563,10 @@
           };
           github.user = "zerodeth";
           # Clone git repos with URLs like "gh:zerodeth/dotfiles"
-          # url."git@github.com:" = {
-          #   insteadOf = "gh:";
-          #   pushInsteadOf = "gh:";
-          # };
+          url."git@github.com:" = {
+            insteadOf = "gh:";
+            pushInsteadOf = "gh:";
+          };
       };
 
       signing = lib.mkForce {
@@ -480,6 +576,8 @@
         signByDefault = true;
         gpgPath = "${pkgs.gnupg}/bin/gpg2";
       };
+
+      diff-so-fancy.enable = false;
 
       lfs.enable = true;
       ignores = [ "*~" "*.swp" "*.history" ".DS_Store" "*.terraform/" "*.nix-node" "*.direnv" "result" "*.venv" "*.direnv" "*.idea" ];

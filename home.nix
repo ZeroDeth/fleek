@@ -26,7 +26,7 @@
     pkgs.gtop
     pkgs.nodejs-18_x
     pkgs.yarn
-    pkgs.go
+    pkgs.go_1_20
     pkgs.gopls
     pkgs.duf
     pkgs.ctop
@@ -68,6 +68,10 @@
     pkgs.wezterm
     pkgs.devbox
     pkgs.prettyping
+    pkgs.fh
+    pkgs.colmena
+    pkgs.arkade
+    pkgs.ntfy-sh
     # Fleek Bling
     pkgs.git
     pkgs.htop
